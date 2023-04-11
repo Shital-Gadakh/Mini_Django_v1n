@@ -1,0 +1,54 @@
+ Commands of starting Django project
+
+pip install Django
+"python -m pip install --upgrade pip"
+pip install virtualenv
+virtualenv env
+pip freeze > requirements.txt
+
+
+# linux command
+django-admin startproject velocity
+
+# windows command
+django-admin.exe startproject velocity
+
+mini_django_v1 (project-directory)
+
+    - README.md
+    - requirements.txt
+    - venv
+    - velocity  (project-root)
+        - manage.py
+        - velocity  (project-settings)
+            - __init__.py
+            - asgi.py
+            - wsgi.py
+            - settings.py
+            - urls.py
+        - blog (application)
+            - __init__.py
+            - admin.py
+            - apps.py
+            - models.py
+            - tests.py
+            - views.py
+            - migrations   (results after running `makemigrate` command.)
+                - __init__.py
+
+django files
+manage.py :: this script helps us with management of site. It helps us to to start web server.
+
+settings.py :: contains configuration for the website
+
+urls.py :: this is a file for URL management
+
+wsgi.py :: deployment purpose (immidiately response)
+
+asgi.py :: deployment purpose
+############################
+
+Next commands:
+cd velocity
+python manage.py migrate
+python manage.py runserver
