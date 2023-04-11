@@ -2,16 +2,37 @@
 
 pip install Django
 "python -m pip install --upgrade pip"
+# windows command
+django-admin.exe startproject velocity
 pip install virtualenv
 virtualenv env
 pip freeze > requirements.txt
+Next commands:
+cd velocity
+python manage.py migrate
+python manage.py runserver
+python manage.py startapp blog
+python manage.py makemigrations blog`
+python manage.py migrate
+python manage.py makemigrations blog`
+python manage.py createsuperuser`
+python manage.py runserver
 
 
+### To create django project
+
+
+```shell
 # linux command
 django-admin startproject velocity
 
 # windows command
 django-admin.exe startproject velocity
+```
+
+### project structure
+
+```markdown
 
 mini_django_v1 (project-directory)
 
@@ -35,39 +56,68 @@ mini_django_v1 (project-directory)
             - views.py
             - migrations   (results after running `makemigrate` command.)
                 - __init__.py
+```
 
-django files
-manage.py :: this script helps us with management of site. It helps us to to start web server.
+### Django architecture
 
-settings.py :: contains configuration for the website
+django follows MVT architecture
 
-urls.py :: this is a file for URL management
+- `models.py` :: To write data-models
+- `view.py` :: To write business logic
+- `tests.py` :: To write unit-test
+- `admin.py` :: For admin interface
 
-wsgi.py :: deployment purpose (immidiately response)
 
-asgi.py :: deployment purpose
-############################
+### django files
 
-Next commands:
-cd velocity
+- `manage.py` :: this script helps us with management of site. It helps us to
+to start web server.
+
+- `settings.py` :: contains configuration for the website
+- `urls.py` :: this is a file for URL management
+- `wsgi.py` :: deployment purpose
+- `asgi.py` :: deployment purpose
+
+
+
+## default database with django
+
+- sqlite
+- when we do `python manage.py migrate` we basically create all the tables in listed in all the applications
+
+## how to create tables associated with sub-applications?
+
+- Django has pre-built sub-applications available in itself.
+- We can create database tables using those apps by using following command
+
+```shell
+cd <project-directory>   # cd velocity
 python manage.py migrate
+```
+- To run the application
+
+```shell
 python manage.py runserver
+```
+
+## Synopsis to start with django
+
+- Step 1: create directory `mkdir <project-root>`
+- Step 2: `cd` to directory in step 1
+- Step 3: `django-admin.exe startproject velocity`
+- Step 4: `cd velocity`
+- Step 5: create DB tables  `python manage.py migrate`
+- Step 6: run project `python manage.py runserver`
+- Step 7: create `app` => `python manage.py startapp blog`
+- Step 8: Inform django we have created new app by appending app name to the `INSTALLED_APPS` list in `settings.py`
+- Step 9: Let django know that we have created new model `python manage.py makemigrations blog`
+- Step 10: migrate DB `python manage.py migrate`
+- Step 11: Register newly created model on admin interface using `admin.py`
+- Step 12: Create user and password using `python manage.py createsuperuser`
+- Step 13: Run application `python manage.py runserver` and check admin interface by heading to `/admin`
 
 
-Synopsis to start with django
-Step 1: create directory mkdir <project-root>
-Step 2: cd to directory in step 1
-Step 3: django-admin.exe startproject velocity
-Step 4: cd velocity
-Step 5: create DB tables python manage.py migrate
-Step 6: run project python manage.py runserver
-Step 7: create app => python manage.py startapp blog
-Step 8: Inform django we have created new app by appending app name to the INSTALLED_APPS list in settings.py
-Step 9: Let django know that we have created new model python manage.py makemigrations blog
-Step 10: migrate DB python manage.py migrate
-Step 11: Register newly created model on admin interface using admin.py
-Step 12: Create user and password using python manage.py createsuperuser
-Step 13: Run application python manage.py runserver and check admin interface by heading to /admin
-Thumb rule for project root directory
-In terms of django, wherever your manage.py file exists, that directory is called as working directory of project (aka project root).
 
+# Thumb rule for `project root` directory
+In terms of django, wherever your `manage.py` file exists, that directory is
+called as `working directory of project` (aka `project root`).
